@@ -1,5 +1,8 @@
 Crypto Tracker App
 A sleek and responsive Crypto Tracker App powered by the CoinCap API. This app provides real-time cryptocurrency data, search and filter options, detailed pricing history in modals, and the ability to favorite your top picks with toaster notifications.
+https://crypto-tracker-app-mtd.netlify.app/
+![image](https://github.com/user-attachments/assets/9023cf71-5de1-4345-b0d3-757ab828fc16)
+
 
 🚀 Features
 Real-Time Listings
