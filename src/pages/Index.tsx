@@ -11,7 +11,8 @@ import {
 import { useToast } from "@/components/ui/use-toast";
 import { CryptoCard } from "@/components/CryptoCard";
 import { CryptoModal } from "@/components/CryptoModal";
-import { api, Crypto, CryptoHistory } from "@/services/api";
+import { api, Crypto } from "@/services/api";
+import { Loader2, TrendingUp, TrendingDown } from "lucide-react";
 
 const SORT_OPTIONS = {
   PRICE_ASC: "price-asc",
@@ -66,6 +67,21 @@ const Index = () => {
     });
   };
 
+  const getMarketTrend = () => {
+    const positiveChanges = cryptos.filter(
+      (crypto) => parseFloat(crypto.changePercent24Hr) > 0
+    ).length;
+    const totalCryptos = cryptos.length;
+    const positivePercentage = (positiveChanges / totalCryptos) * 100;
+
+    return {
+      trend: positivePercentage > 50 ? "bullish" : "bearish",
+      percentage: positivePercentage,
+    };
+  };
+
+  const marketTrend = getMarketTrend();
+
   const filteredAndSortedCryptos = [...cryptos]
     .filter(
       (crypto) =>
@@ -97,7 +113,23 @@ const Index = () => {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-4xl font-bold mb-8">Crypto Tracker</h1>
+      <div className="mb-8">
+        <h1 className="text-4xl font-bold mb-4">Crypto Tracker</h1>
+        <div className="flex items-center space-x-2 text-sm">
+          <span>Market Trend:</span>
+          {marketTrend.trend === "bullish" ? (
+            <div className="flex items-center text-green-500">
+              <TrendingUp className="w-4 h-4 mr-1" />
+              <span>Bullish ({marketTrend.percentage.toFixed(1)}%)</span>
+            </div>
+          ) : (
+            <div className="flex items-center text-red-500">
+              <TrendingDown className="w-4 h-4 mr-1" />
+              <span>Bearish ({marketTrend.percentage.toFixed(1)}%)</span>
+            </div>
+          )}
+        </div>
+      </div>
       
       <div className="flex flex-col sm:flex-row gap-4 mb-8">
         <Input
@@ -134,13 +166,8 @@ const Index = () => {
       </div>
 
       {isLoading ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {[...Array(6)].map((_, i) => (
-            <div
-              key={i}
-              className="h-32 bg-secondary animate-pulse rounded-lg"
-            />
-          ))}
+        <div className="flex items-center justify-center py-8">
+          <Loader2 className="w-8 h-8 animate-spin text-primary" />
         </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
