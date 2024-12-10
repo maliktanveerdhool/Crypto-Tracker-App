@@ -1,4 +1,27 @@
+Crypto Tracker App
+A sleek and responsive Crypto Tracker App powered by the CoinCap API. This app provides real-time cryptocurrency data, search and filter options, detailed pricing history in modals, and the ability to favorite your top picks with toaster notifications.
 
+🚀 Features
+Real-Time Listings
+
+Fetch live cryptocurrency data (name, symbol, price, 24-hour change, market cap).
+Search and Filters
+
+Quickly search for cryptocurrencies by name or symbol.
+Sort by price, market cap, or percentage change.
+Detailed Modals
+
+Click on any cryptocurrency to view:
+Pricing history (7-day interactive chart).
+Metrics like rank, volume, and supply.
+Favorites with Notifications
+
+Add/remove favorite listings with instant toaster notifications.
+Favorites stored locally for a personalized experience.
+Responsive Design
+
+Fully mobile-first and responsive for all devices.
+Modern UI/UX with a clean, intuitive interface.
 
 **Use your preferred IDE**
 
